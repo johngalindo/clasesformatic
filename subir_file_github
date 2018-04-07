@@ -1,0 +1,23 @@
+# primera vez
+
+echo "# clasesformatic" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/johngalindo/clasesformatic.git
+git push -u origin master
+
+
+
+#updates files
+git add .
+git commit -m "first commit"
+git push -u origin master
+
+
+git commit -am "update 17-mar-18"
+git push origin master
+
+
+
+
