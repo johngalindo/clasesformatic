@@ -1,0 +1,1 @@
+{"virtualbox":{"/var/www/html":{"guestpath":"/var/www/html","hostpath":"/home/invitado/Documentos/clases formatic linux/practica-vagrant/vagrant/html/html","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/invitado/Documentos/clases formatic linux/practica-vagrant/vagrant/html","disabled":false,"__vagrantfile":true}}}

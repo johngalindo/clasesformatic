@@ -1,0 +1,55 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  
+  config.vm.define "maestro" do |maestro|
+  	maestro.vm.box = "ubuntu/xenial32"
+  	maestro.vm.provider :virtualbox do |vb|
+		vb.customize [ 'modifyvm', :id, '--memory', '750' ]
+		vb.customize [ 'modifyvm', :id, '--cpus', '2' ]
+		vb.customize [ 'modifyvm', :id, '--name', 'maestro' ]
+		vb.customize [ 'modifyvm', :id, '--cpuexecutioncap', '60' ]
+  	end
+	maestro.vm.network "private_network", ip:"10.11.12.3"
+	maestro.vm.provision "shell", path: "HAProxy.sh"
+#	maestro.vm.synced_folder "maestro" , "/tmp/maestro"
+  end
+#nodo 1
+  config.vm.define "node1" do |node1|
+	node1.vm.box = "ubuntu/xenial32"
+	node1.vm.provider :virtualbox do |vb|
+		vb.customize [ 'modifyvm', :id, '--memory', '250' ]
+		vb.customize [ 'modifyvm', :id, '--cpus', '1' ]
+		vb.customize [ 'modifyvm', :id, '--name', 'node1' ]		
+                vb.customize [ 'modifyvm', :id, '--cpuexecutioncap', '60' ]
+	end
+	node1.vm.network "private_network", ip:"10.11.12.4"
+	node1.vm.provision "shell", path: "apache.sh", args: ['Nodo 1']
+  end
+#nodo 2
+  config.vm.define "node2" do |node2|
+        node2.vm.box = "ubuntu/xenial32"
+        node2.vm.provider :virtualbox do |vb|
+                vb.customize [ 'modifyvm', :id, '--memory', '250' ]
+                vb.customize [ 'modifyvm', :id, '--cpus', '1' ]
+                vb.customize [ 'modifyvm', :id, '--name', 'node2' ]
+                vb.customize [ 'modifyvm', :id, '--cpuexecutioncap', '60' ]
+        end
+        node2.vm.network "private_network", ip:"10.11.12.5"
+        node2.vm.provision "shell", path: "apache.sh", args: ['Nodo 2']
+  end
+#nodo 3
+  config.vm.define "node3" do |node3|
+        node3.vm.box = "ubuntu/xenial32"
+        node3.vm.provider :virtualbox do |vb|
+                vb.customize [ 'modifyvm', :id, '--memory', '250' ]
+                vb.customize [ 'modifyvm', :id, '--cpus', '1' ]
+                vb.customize [ 'modifyvm', :id, '--name', 'node3' ]
+                vb.customize [ 'modifyvm', :id, '--cpuexecutioncap', '60' ]
+        end
+        node3.vm.network "private_network", ip:"10.11.12.6"
+        node3.vm.provision "shell", path: "apache.sh", args: ['Nodo 3']
+  end
+
+end
